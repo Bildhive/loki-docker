@@ -13,6 +13,11 @@ services:
     command: -config.file=/etc/loki/local-config.yaml
     networks:
       - loki
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "5"
 
   promtail:
     image: grafana/promtail:2.9.2
@@ -23,3 +28,8 @@ services:
     command: -config.file=/etc/promtail/config.yaml
     networks:
       - loki
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "5"
