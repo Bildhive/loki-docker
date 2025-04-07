@@ -31,6 +31,18 @@ limits_config:
   ingestion_rate_strategy: local
   per_stream_rate_limit: 100M
   per_stream_rate_limit_burst: 200M
+  retention_period: 90d
+
+chunk_store_config:
+  max_look_back_period: 90d
+
+compactor:
+  working_directory: /loki/compactor
+  shared_store: filesystem
+  compaction_interval: 1d
+  retention_enabled: true
+  retention_delete_delay: 2h
+  retention_delete_worker_count: 150
 
 ruler:
   alertmanager_url: http://localhost:9093
